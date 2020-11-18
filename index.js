@@ -60,10 +60,9 @@ function removeSocket(socketveri)
 {
  for(var i =0; i<sockets.length; i++)
   {
-    if (sockets[i] == socketveri){
+    if (sockets[i] === socketveri){
       sockets.splice(i, 1);
     }
-    sockets[i].emit(topic, msg);
   }
 }
 
