@@ -42,7 +42,7 @@ var app = express()
 var server = app.listen(PORT);
 
 
-var io = socketIO.listen(server);
+var io = socketIO(server);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
