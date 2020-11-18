@@ -10,7 +10,7 @@ const server = express()
  res.sendFile(INDEX, { root: __dirname })
 })
 
-.server.listen(PORT, () => console.log(`Listening on ${PORT}`));
+.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const io = socketIO(server);
 
