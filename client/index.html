@@ -27,10 +27,15 @@
         {
             console.log("Name of another client: " + data.name);
         });
+     
+        socket.on("sa", function(data)
+        {
+            console.log("slmlar");
+        });
  
         function getMyName()
         {
-            socket.emit("getMyName");
+            socket.emit("deneme");
         }
  
         function sendMyNameToAllClients()
