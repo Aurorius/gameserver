@@ -26,6 +26,11 @@ io.sockets.on("connection", function(socket)
         socket.emit("onGetMyName", { name: clientName });
     });
  
+    socket.on("deneme", function()
+    {
+        socket.emit("sa", "slm");
+    });
+ 
     socket.on("sendMyNameToAllClients", function()
     {
         socket.broadcast.emit("onSendMyNameToAllClients", { name: clientName });
