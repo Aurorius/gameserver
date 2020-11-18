@@ -9,7 +9,6 @@ const INDEX = '/index.html';
 const server = express()
 .use(function(req, res, next) {
   cors();
-  next();
 })
 .use('/index.html/', function (req, res, next) {
   res.sendFile(INDEX, { root: __dirname })
