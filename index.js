@@ -1,39 +1,18 @@
+const express = require('express');
+const socketIO = require('socket.io');
 
-var express = require("express");
-var app = express();
-var server = require("http").Server(app);
- 
-app.get("/", function(req, res)
-{
-    res.sendFile(__dirname + "/client/index.html");
+const PORT = process.env.PORT || 3000;
+const INDEX = '/index.html';
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
 });
-app.use("/client", express.static(__dirname + "/client"));
- 
-var port = process.env.PORT || 3000;
-server.listen(port);
-console.log("Server started. Port = " + port);
- 
-var io = require("socket.io")(server, {});
-var shortid = require('shortid');
- 
-io.sockets.on("connection", function(socket)
-{
-    var clientName = shortid.generate();
-    console.log("client was connected, name = " + clientName);
- 
-    socket.on("getMyName", function()
-    {
-        socket.emit("onGetMyName", { name: clientName });
-    });
- 
-    socket.on("deneme", function()
-    {
-        socket.emit("sa", "slm");
-    });
- 
-    socket.on("sendMyNameToAllClients", function()
-    {
-        socket.broadcast.emit("onSendMyNameToAllClients", { name: clientName });
-        console.log(clientName);
-    });
-});
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
