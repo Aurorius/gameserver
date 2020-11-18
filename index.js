@@ -42,7 +42,10 @@ var app = express()
 var server = app.listen(PORT);
 
 
-var io = socketIO(server);
+var io = socketIO(server, options={
+ cors:true,
+ origins:["/"],
+});
 
 io.on('connection', (socket) => {
   console.log('Client connected');
