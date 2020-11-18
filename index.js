@@ -10,7 +10,7 @@ const server = express()
 
 const io = socketIO(server, {
   cors: {
-    origin: "https://aurorius.herokuapp.com:3000",
+    origin: "https://aurorius.herokuapp.com",
     credentials: true
   }
 });
