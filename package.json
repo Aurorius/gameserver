@@ -21,7 +21,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "index.js"
   },
   "keywords": [],
   "author": "",
