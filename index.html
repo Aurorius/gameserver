@@ -9,6 +9,12 @@
         el = document.getElementById('server-time');
         el.innerHTML = 'Server time: ' + timeString;
       });
+      
+      socket.on('clienteYolla', (msg) => {
+        console.log("Mesaj geldi "+ msg);
+      });
+      
+      
     </script>
   </head>
   <body>
