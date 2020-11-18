@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
     res.render('index.html');
 });
 
-app.use('/', router);
+
 
 
  // .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
 const server = express()
-
+  .use('/', router);
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
