@@ -41,19 +41,29 @@ var app = express()
 
 var server = app.listen(PORT);
 
+var sockets = [];
 
 var io = socketIO(server, options={
  cors:true,
  origins:["/"],
 });
 
+function broadcast(topic, msg)
+{
+  for(var i =0; i<sockets.length; i++)
+  {
+    sockets[i].emit(topic, msg);
+  }
+}
+
 io.on('connection', (socket) => {
   console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  sockets.push(socket);
+  socket.on('disconnect', () => console.log('Client disconnected')  );
   
   socket.on('sunucuyuSelamla', () => 
-           socket.emit("clienteYolla", "slm")
-            
-           );
+        broadcast("sarkiDegistir", "r8BsuT0PWdI");
+          // socket.emit("clienteYolla", "slm")
+  );
   
 });
