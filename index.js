@@ -6,6 +6,7 @@ const socketIO = require('socket.io');
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
 
+/*
 const server = express()
 .use(function(req, res, next) {
   cors();
@@ -28,7 +29,22 @@ const server = express()
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-const io = socketIO(server);
+*/
+
+var cors = require('cors')
+var app = express()
+ 
+app.use(cors())
+ 
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+ 
+app.listen(PORT, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
+const io = socketIO(app);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
