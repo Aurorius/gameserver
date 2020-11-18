@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected')  );
   
   socket.on('sunucuyuSelamla', () => 
-        broadcast("sarkiDegistir", "r8BsuT0PWdI");
+        broadcast("sarkiDegistir", "r8BsuT0PWdI")
           // socket.emit("clienteYolla", "slm")
   );
   
