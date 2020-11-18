@@ -50,4 +50,10 @@ var io = socketIO(server, options={
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
+  
+  socket.on('sunucuyuSelamla', () => 
+           socket.emit("clienteYolla", "slm")
+            
+           );
+  
 });
