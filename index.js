@@ -8,14 +8,15 @@ const INDEX = '/index.html';
 
 
 
- // .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+ // 
 const app = express();
 
 
-app.get('/selam', function (req, res) {
- res.sendFile(INDEX, { root: __dirname })
-});
+//app.get('/selam', function (req, res) {
+// res.sendFile(INDEX, { root: __dirname })
+//});
 
+app..use((req, res) => res.sendFile(INDEX, { root: __dirname }));
 
 
 
