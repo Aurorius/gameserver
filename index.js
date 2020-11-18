@@ -6,7 +6,7 @@ const INDEX = '/index.html';
 
 const server = express()
 
-.use('/', function (req, res, next) {
+.use('/index.html/', function (req, res, next) {
   res.sendFile(INDEX, { root: __dirname })
 })
 .use('/neko/', function (req, res, next) {
