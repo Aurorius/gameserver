@@ -70,7 +70,7 @@ function removeSocket(socketveri)
 io.on('connection', (socket) => {
   console.log('Client connected');
   sockets.push(socket);
-  socket.on('disconnect', () => removeSocket(socket) );
+  //socket.on('disconnect', () => removeSocket(socket) );
   
   socket.on('sunucuyuSelamla', (data) => 
         broadcast("sarkiDegistir", data)
