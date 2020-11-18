@@ -16,7 +16,7 @@ const app = express();
 // res.sendFile(INDEX, { root: __dirname })
 //});
 
-app..use((req, res) => res.sendFile(INDEX, { root: __dirname }));
+app.use((req, res) => res.sendFile(INDEX, { root: __dirname }));
 
 
 
