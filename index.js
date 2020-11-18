@@ -1,7 +1,34 @@
-var http = require('http');
 
-//create a server object:
-http.createServer(function (req, res) {
-  res.write('Hello World!'); //write a response to the client
-  res.end(); //end the response
-}).listen(8080); //the server object listens on port 8080
+var express = require("express");
+var app = express();
+var server = require("http").Server(app);
+ 
+app.get("/", function(req, res)
+{
+    res.sendFile(__dirname + "/client/index.html");
+});
+app.use("/client", express.static(__dirname + "/client"));
+ 
+var port = process.env.PORT || 3000;
+server.listen(port);
+console.log("Server started. Port = " + port);
+ 
+var io = require("socket.io")(server, {});
+var shortid = require('shortid');
+ 
+io.sockets.on("connection", function(socket)
+{
+    var clientName = shortid.generate();
+    console.log("client was connected, name = " + clientName);
+ 
+    socket.on("getMyName", function()
+    {
+        socket.emit("onGetMyName", { name: clientName });
+    });
+ 
+    socket.on("sendMyNameToAllClients", function()
+    {
+        socket.broadcast.emit("onSendMyNameToAllClients", { name: clientName });
+        console.log(clientName);
+    });
+});
