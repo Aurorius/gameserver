@@ -18,6 +18,9 @@ const server = express()
 .use('/lib/', function (req, res, next) {
   res.sendFile('lib.js', { root: __dirname })
 })
+.use('/neko/', function (req, res, next) {
+  res.sendFile('ChargeurNekodancer.swf', { root: __dirname })
+})
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
