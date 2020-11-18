@@ -56,13 +56,24 @@ function broadcast(topic, msg)
   }
 }
 
+function removeSocket(socketveri)
+{
+ for(var i =0; i<sockets.length; i++)
+  {
+    if (sockets[i] == socketveri){
+      sockets.splice(i, 1);
+    }
+    sockets[i].emit(topic, msg);
+  }
+}
+
 io.on('connection', (socket) => {
   console.log('Client connected');
   sockets.push(socket);
   socket.on('disconnect', () => console.log('Client disconnected')  );
   
-  socket.on('sunucuyuSelamla', () => 
-        broadcast("sarkiDegistir", "r8BsuT0PWdI")
+  socket.on('sunucuyuSelamla', (data) => 
+        broadcast("sarkiDegistir", data)
           // socket.emit("clienteYolla", "slm")
   );
   
