@@ -1,5 +1,4 @@
-const express = require('express'), 
-      router = express.Router();
+const express = require('express');
 
 const socketIO = require('socket.io');
 
@@ -8,16 +7,10 @@ const INDEX = '/index.html';
 
 
 
-router.get('/', function(req, res, next) {
-    res.render('index.html');
-});
-
-
-
 
  // .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
 const server = express()
-  .use('/', router)
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
