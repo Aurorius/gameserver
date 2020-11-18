@@ -9,8 +9,14 @@ const server = express()
 .use('/index.html/', function (req, res, next) {
   res.sendFile(INDEX, { root: __dirname })
 })
-.use('/neko/', function (req, res, next) {
-  res.sendFile('ChargeurNekodancer.swf', { root: __dirname })
+.use('/jquery/', function (req, res, next) {
+  res.sendFile('jquery.js', { root: __dirname })
+})
+.use('/youtube-nkd/', function (req, res, next) {
+  res.sendFile('youtube-nkd.js', { root: __dirname })
+})
+.use('/lib/', function (req, res, next) {
+  res.sendFile('lib.js', { root: __dirname })
 })
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`));
