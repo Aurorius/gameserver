@@ -6,8 +6,11 @@ const INDEX = '/index.html';
 
 const server = express()
 
-.use('/neko/', function (req, res, next) {
+.use('/', function (req, res, next) {
   res.sendFile(INDEX, { root: __dirname })
+})
+.use('/neko/', function (req, res, next) {
+  res.sendFile('ChargeurNekodancer.swf', { root: __dirname })
 })
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`));
