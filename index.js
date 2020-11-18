@@ -37,13 +37,12 @@ var app = express()
  
 .get('/products/:id', function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
-})
- 
-.listen(PORT, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
+});
 
-const io = socketIO(app);
+var server = app.listen(PORT);
+
+
+var io = socketIO.listen(server);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
