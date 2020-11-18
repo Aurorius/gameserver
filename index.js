@@ -8,12 +8,7 @@ const server = express()
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
-const io = socketIO(server, {
-  cors: {
-    origin: "https://aurorius.herokuapp.com",
-    credentials: true
-  }
-});
+const io = socketIO(server);
 
 
 
