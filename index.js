@@ -56,6 +56,18 @@ function broadcast(topic, msg)
   }
 }
 
+function broadcastExcept(topic, msg, except)
+{
+  for(var i =0; i<sockets.length; i++)
+  {
+    if (sockets[i] != except)
+    {
+      sockets[i].emit(topic, msg);
+    }
+  }
+}
+
+
 function removeSocket(socketveri)
 {
  for(var i =0; i<sockets.length; i++)
