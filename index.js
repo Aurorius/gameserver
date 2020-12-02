@@ -87,5 +87,9 @@ io.on('connection', (socket) => {
         broadcast("sarkiDegistir", data)
           // socket.emit("clienteYolla", "slm")
   );
+  socket.on('mermiGonder', (data) => 
+        broadcast("mermiAt", data)
+          // socket.emit("clienteYolla", "slm")
+  );
   
 });
