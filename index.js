@@ -82,7 +82,7 @@ io.on('connection', (socket) => {
   console.log('Client connected');
   sockets.push(socket);
   //socket.on('disconnect', () => removeSocket(socket) );
-  broadcastExcept("playerJoin", socket, socket);
+  //broadcastExcept("playerJoin", socket, socket);
   socket.on('sunucuyuSelamla', (data) => 
         broadcast("sarkiDegistir", data)
           // socket.emit("clienteYolla", "slm")
