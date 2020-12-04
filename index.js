@@ -35,8 +35,8 @@ var app = express()
  
 .use(cors())
  
-.get('/index.html', function (req, res, next) {
-  res.json({msg: 'Hos geldiniz!'})
+.get('/oyun', function (req, res, next) {
+  res.sendFile(INDEX, { root: __dirname })
 });
 
 var server = app.listen(PORT);
