@@ -81,7 +81,7 @@ function removeSocket(socketveri)
 io.on('connection', (socket) => {
   console.log('Client connected');
   sockets.push(socket);
-  broadcast('playerConnect', socket);
+  broadcast("playerConnect", socket);
   
   socket.on('disconnect', () => console.log('Client disconnected'));
   
