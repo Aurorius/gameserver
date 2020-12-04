@@ -80,5 +80,9 @@ function removeSocket(socketveri)
 
 io.on('connection', (socket) => {
   console.log('Client connected');
+  sockets.push(socket);
   socket.on('disconnect', () => console.log('Client disconnected'));
+  
+  socket.on('mermiGonder', (data) => broadcast("mermiAt", data) );
+  
 });
