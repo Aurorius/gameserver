@@ -1,337 +1,125 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<title>Nekodancer</title>
-<link rel="icon" type="image/png" href="http://nekodancer.com/favicon.png" />
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="Content-Type" content="UTF-8">
-<meta name="Content-Language" content="en">
-<meta name="Description" content="Nekodancer is a multiplayer dance game with cats!">
-<meta name="Keywords" content="nekodancer,nekodance,neko,dance,ddr,dance dance revolution, transformice, multiplayer, game, game studio, flash game, flash, free, free to play, browser, browser game, videogame">
-<meta name="Subject" content="Videogames">
-<meta name="Copyright" content="Atelier 801 SARL">
-<meta name="Author" content="M�lanie Christin">
-<meta name="Identifier-Url" content="http://www.nekodancer.com">
-<meta name="Rating" content="general">
-<meta name="Distribution" content="global">
-<meta name="Category" content="games">
-<meta property="fb:app_id" content="515004678599292"/>
-<link rel=�image_src� href=http://nekodancer.com/%EF%BF%BDavatar.jpg%EF%BF%BD />
-
-
-<script type='text/javascript' src="https://aurorius.herokuapp.com/jquery/"></script>
-<script type="text/javascript" src="https://aurorius.herokuapp.com/youtube-nkd/"></script>
-<script type="text/javascript" src="https://aurorius.herokuapp.com/lib/"></script>
-
-<style type="text/css">
-body {
-	font-family: Lucida Grande, Arial, Helvetica, Sans-serif;
-	font-size: 0.8em;
-	text-align: left;
-	background: #048895;
-	color: #999;
-	margin: 0 0 0 0;
-	}
-
-#fond {
-	background: url('fond-nekodancer.jpg') no-repeat top;
-	margin: 0 0 0 0;
-	min-height: 731px;
-	}
-
-	
-#page {
-	margin: 0 auto 0 auto;
-	width: 1120px;
-	padding-top: 50px;
-	}
-#page a {
-	text-decoration: none;
-	color: #999;
-	}
-#page a:hover {
-	text-decoration: underline;
-	color: #999;
-	}
-#page a  img{
-	text-decoration: none;
-	}
-	
-
-.banniere {
-	float:right;
-	min-height:600px;
-	width: 166px;
-	
-	}
-	
-.pub_120 {
-	border-width:3px;
-	border-style:solid;
-	border-color:white;
-	height:600px;
-	}
-
-	
-	
-#horizontale {
-	background: url('fond-banniere-horizontale.png') no-repeat center;
-	min-height:139px;
-	}
-
-.pub_728 {
-	margin-top:60px;
-	padding-top: 25px;
-	margin-left:180px;
-	}
-
-
-
-	
-	
-.jeu {
-	margin-bottom : 128px;
-	margin-right: 30px;
-	border-width:3px;
-	border-style:solid;
-	border-color:white;
-	}
-
-
-kutu {
-  width: 200px;
-  border: 15px solid blue;
-  padding: 20px;
-  margin: 20px;
-}
-
-</style>
-<link rel="stylesheet" type="text/css" href="http://nekodancer.com/jquery.cookiebar.css">
-
-
-
-</head>
 <body>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-	var langueFB = navigator.language;
-	if (langueFB.length < 3) {
-		langueFB = langueFB+"_"+langueFB.toUpperCase();
-	}
-	langueFB = langueFB.replace("-", "_");
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/"+langueFB+"/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-<script src="https://apis.google.com/js/platform.js?onload=initialiserGAPI" async defer></script>
-<script type="text/javascript">
-    var gapiInitialise = false;
-
-    function gapiEstInitialise() {
-        return gapiInitialise;
-    }
-
-    function initialiserGAPI() {
-        var idClient = "815332750938-gb9naef3nm2oe7g9k4idr68gc0jbm3gl.apps.googleusercontent.com";
-
-        gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: idClient,
-            }).then(function() {
-                gapiInitialise = true;
-                var onInitialisationGAPITerminee = document.getElementById('swf2')['onInitialisationGAPITerminee'];
-                if (onInitialisationGAPITerminee) {
-                    onInitialisationGAPITerminee();
-                }
-            }, function() {
-                var onErreurInitialisationGAPI = document.getElementById('swf2')['onErreurInitialisationGAPI'];
-                if (onErreurInitialisationGAPI) {
-                    onErreurInitialisationGAPI();
-                }
-            });
-        });
-    }
-
-    function estAuthentifieSurGoogle() {
-        return gapi.auth2.getAuthInstance().isSignedIn.get();
-    }
-
-    function recupTokenConnexionGoogle() {
-        return gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
-    }
-
-    function authentifierSurGoogle() {
-        gapi.auth2.getAuthInstance().signIn({
-            prompt: 'select_account'
-        }).then(function() {
-            var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
-            document.getElementById('swf2')['onAuthGoogle'](token);
-        }, function() {
-            document.getElementById('swf2')['onErreurAuthGoogle']();
-        });
-    }
-</script>
-
-<script id="script_auth_facebook" type="text/javascript">
-    var authFBInitialisee = false;
-
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '1814909921903510',
-            version: 'v2.12',
-            status: true
-        });
-        authFBInitialisee = true;
-    };
-
-    function authFBEstInitialisee() {
-        return authFBInitialisee;
-    }
-
-    function authentifierSurFB() {
-        FB.login(function(reponse) {
-            if (reponse.authResponse) {
-                document.getElementById('swf2')['onAuthFB'](reponse.authResponse.userID, reponse.authResponse.accessToken);
-            }
-        }, {
-            scope: 'email'
-        });
-    }
-
-    function determinerLocaleFB() {
-        var langueNav = navigator.languages ? navigator.languages.find(function(l) {return l.indexOf("_") >= 1 || l.indexOf("-") >= 1}) || navigator.languages[0] : navigator.language || navigator.userLanguage || "en_US";
-        return langueNav.replace(/^[a-zA-Z0-9]+/, function(langue) {return langue.toLowerCase();}).replace(/[_\-]([a-zA-Z0-9]+)/, function(s, pays) {return "_" + pays.toUpperCase();});
-    }
-
-    (function chargerScriptFB() {
-        var scriptFacebook = document.createElement('script');
-        scriptFacebook.src = "https://connect.facebook.net/" + determinerLocaleFB() + "/sdk.js";
-        document.getElementById("script_auth_facebook").parentNode.appendChild(scriptFacebook);
-    })();
-</script>
-
-<script type="text/javascript">
-	var langue = navigator.language;
-        if (!langue) {
-                langue = navigator.browserLanguage;
-        }
-        langue = langue.substr(0, 2);
-	
-	function positionMolette(X, Y) {
-	}
-	function activerMolette(OUI, HAUT) {
-	}
-	function recupLangue() {
-		return langue;
-	}
-	function pleinEcran(OUI) {
-		if (OUI) {
-			if (OUI == 2) {
-				document.getElementById("nekodancer").style.position="fixed";
-				document.getElementById("nekodancer").style.left="0";
-				document.getElementById("nekodancer").style.top="0";
-				document.getElementById("nekodancer").style.width="100%";
-				document.getElementById("nekodancer").style.height="100%";
-			}
-			
-			document.getElementById("menu_gauche").style.display="none";
-			document.getElementById("facebouk").style.display="none";
-			
-			
-		} else {
-			document.getElementById("nekodancer").style.position="static";
-			document.getElementById("nekodancer").style.width="800px";
-            document.getElementById("nekodancer").style.height="600px";
-		
-			document.getElementById("menu_gauche").style.display="inline";
-			document.getElementById("facebouk").style.display="inline";
-			
-		}
-	}
-</script>
-
-
-<script src="http://nekodancer.com/jquery.cookiebar.js"></script>
-<script src="http://nekodancer.com/cookie801.js"></script>
-
+<img id="mermi" width="0" height="0" src="mermi.png" alt="alime giren item">
+<img id="alimpopo" width="0" height="0" src="alimas.png" alt="alimin mermisavar poposu">
+<p></p>
+<canvas id="myCanvas" width="800" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<audio src="narutotheme.ogg" id="audio1" autoplay loop>
+        Audio is not supported.
+ </audio>
+<audio src="hurt.ogg" id="hurt" >
+        Audio is not supported.
+ </audio>
+ 
+<script src="https://denemeapp13.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
 
-function sarkiDegistir(msg)
-{
-        var ID = "";
-        if(msg.indexOf("?v=")!= -1)
-        {	
-                var index = msg.indexOf("?v=");
-                ID = msg.substring(index+3, index+14  );
+  let socket = io("https://denemeapp13.herokuapp.com/");
+        
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.font = "30px Comic Sans MS";
+  ctx.fillStyle = "red";
+  ctx.textAlign = "center";
+
+  //var img = document.getElementById("scream");
+  //
+  var audio = document.getElementById("audio1");
+  audio.volume = 0.1;
+  var hurtsound = document.getElementById("hurt");
+  var liste = [];
+  
+  var players = [];
+  
+  var HP = 100;
+  var popoHP = 100;
+  
+  var img = document.getElementById("mermi");
+  var ass = document.getElementById("alimpopo");
+  
+  socket.on('mermiAt', (msg) => {
+      liste.push([x=msg[0],y=msg[1]]);
+  });
+  socket.on('playerConnect', (player) => {
+      players.push(player);
+      alert(player.id);
+  });
+  
+  
+  
+  
+  function res()
+  {
+      HP = 100;
+      popoHP = 100;
+  }
+function timerloop(){
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.drawImage(ass, 20, 1);
+        ctx.fillText("HP: "+HP, 400, 30);
+        ctx.fillText("PopoHP: "+popoHP, 400, 60);
+        for(var i =0; i<liste.length;i++){
+                if (liste[i][1] < 20){
                 
-        }else if(msg.length == 11){
-                ID = msg;
-                
+                     if (liste[i][0] > 20 && liste[i][0] < 250)
+                     {
+                             hurtsound.play();
+                             
+                             popoHP = popoHP - (Math.floor(Math.random() * 10) + 1);
+                             setTimeout(function() 
+                             { 
+                             
+                                     HP = HP - (Math.floor(Math.random() * 10) + 1);
+                                     
+                                     if (HP < 0){
+                                         alert("ÖLDÜN");
+                                         res();
+                                     }else if(popoHP < 0){
+                                         alert("AFERİN POPOYU ÖLDÜRDÜN");
+                                         res();
+                                     }
+                             },
+                             
+                             1000);
+                             
+                             
+                     }
+                     
+                     liste.splice(i, 1);
+                     
+                    
+                     
+                }else{
+                     liste[i][1] = liste[i][1] - 10;
+        
+                     ctx.drawImage(img, liste[i][0], liste[i][1]);
+                }
         }
-        Youtube.API.videoDegistir(ID);
+
 }
 
-</script>
+var t=setInterval(timerloop,100);
 
-<table>
-  <tr>
-    <th><div id=jeu>
-
-	<div class="jeu" style="width:800px;height:600px;">
-			<div id="nekodancer" style="width:100%;height:100%;">
-                       
-					<object id="swf1" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="100%" height="100%" align="middle">
-					<param name="allowScriptAccess" value="always" />
-					<param name="movie" value="ChargeurNekodancer.swf" />
-					<param name="menu" value="true" />
-					<param name="quality" value="high" />
-					<param name="bgcolor" value="#048895" />
-					<embed id="swf2" src="https://aurorius.herokuapp.com/neko" wmode="direct" menu="true" quality="high" bgcolor="#048895" width="100%" height="100%" name="Bouboum" align="middle" swLiveConnect="true" allowFullScreen="true" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-					</object>
-					
-					
-			</div>
-			
-	</div>
+c.addEventListener('click',function(event) {
+    var x = event.pageX - 8 ,
+        y = event.pageY - 16 ;
+        audio.play();
+        //if (liste.length == 0){
+        //liste.push([x=x,y=y]);
         
-</div>
-</th>
-    <th> <kutu> 
-            <input type="text" id="id" name="id">
-            <button onclick="sarkiDegistir(document.getElementById('id').value )"> Şarkıyı değiştir </button> </kutu> 
-    </th>
-  </tr>
-</table>
+        socket.emit("mermiGonder",[x,y]);
+        
+        //}
+        //ctx.fillRect(x,y,10,10);
+}, false);
+  
 
 
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-1657808-9', 'auto');
-  ga('send', 'pageview');
 
 </script>
-
-<script>
-	ecouterMoletteSurJeu("nekodancer");
-</script>
-
 
 </body>
 </html>
