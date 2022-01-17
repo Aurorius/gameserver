@@ -31,9 +31,22 @@ const server = express()
 
 */
 
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(null, true)
+    }
+  },
+  credentials: true,
+}
+
+
 var app = express()
- 
-.use(cors())
+
+.use(cors(corsOptions))
  
 .get('/oyun', function (req, res, next) {
   res.sendFile(INDEX, { root: __dirname })
