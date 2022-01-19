@@ -22,11 +22,11 @@ function yayinla(veri){
 	}
 }
 
-wss.on('connection', function connection(ws, req) {
+wss.on('connection', function connection(ws) {
   ws.on('message', function message(data) {
 	if(data=="getir"){
 		console.log("getir isteği");
-		ws.send('received ip :');
+		//ws.send(JSON.stringify(liste));
 	}else{
 		console.log('received ip :'+ ws._socket.remoteAddress, data);
 		console.log('received:', JSON.parse(data));
