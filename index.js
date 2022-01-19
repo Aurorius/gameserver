@@ -36,7 +36,7 @@ wss.on('connection', function connection(ws) {
 			}
 		}
 		else if(parsedData[0]=="kaldir"){
-			liste.splice(parsedData[1]);
+			liste.splice(parsedData[1],1);
 			yayinla(JSON.stringify(liste));
 		}else{
 			console.log('received ip :'+ ws._socket.remoteAddress, data);
