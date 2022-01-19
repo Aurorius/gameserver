@@ -28,11 +28,22 @@ wss.on('connection', function connection(ws) {
 		console.log("getir isteği");
 		//ws.send(JSON.stringify(liste));
 	}else{
-		console.log('received ip :'+ ws._socket.remoteAddress, data);
-		console.log('received:', JSON.parse(data));
-		liste.push(JSON.parse(data));
-		console.log(liste);
-		yayinla(JSON.stringify(liste));
+		var parsedData = JSON.parse(data);
+		if(parsedData[0]=="sil"){
+			if(parsedData[1]=="furki"){
+				liste = [];
+				yayinla(JSON.stringify(liste));
+			}
+			
+		}else{
+			console.log('received ip :'+ ws._socket.remoteAddress, data);
+			console.log('received:', parsedData);
+			
+			liste.push(parsedData);
+			console.log(liste);
+			yayinla(JSON.stringify(liste));
+		}
+		
 	}
     
   });
