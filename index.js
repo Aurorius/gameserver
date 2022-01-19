@@ -1,21 +1,34 @@
-const cors = require('cors');
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 7071 });
 
-const express = require('express');
-const socketIO = require('socket.io');
+var liste = [];
 
-const PORT = process.env.PORT || 3000;
-const INDEX = '/index.html';
+var sockets = [];
 
-const io = socketIO(PORT)(httpServer, {
-  cors: {
-    origin: "http://aurorius.epizy.com/",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
+function yayinla(veri){
+	for(let i =0; i<sockets.length; i++)
+	{
+		 sockets[i].send(veri);
+	}
+}
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function message(data) {
+	if(data=="getir"){
+		console.log("getir isteği");
+		//ws.send(JSON.stringify(liste));
+	}else{
+		console.log('received:', data);
+		console.log('received:', JSON.parse(data));
+		liste.push(JSON.parse(data));
+		console.log(liste);
+		yayinla(JSON.stringify(liste));
+	}
+    
+  });
+sockets.push(ws);
+console.log('received');
+ws.send(JSON.stringify(liste));
+//ws.send('something');
 });
 
-io.on('connection', (socket) => {
-  socket.send('Hoşgeldiniz sayın ' + socket.id);
-  //socket.emit('message', 'Hoşgeldiniz sayın ' + socket.id);
-});
