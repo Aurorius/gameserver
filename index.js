@@ -34,6 +34,7 @@ wss.on('connection', function connection(ws) {
 				liste = [];
 				yayinla(JSON.stringify(liste));
 			}
+		}
 		else if(parsedData[0]=="kaldir"){
 			liste.splice(parsedData[1]);
 			yayinla(JSON.stringify(liste));
