@@ -26,9 +26,9 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function message(data) {
 	if(data=="getir"){
 		console.log("getir isteği");
-		//ws.send(JSON.stringify(liste));
+		ws.send('received ip :'+ ws._socket.remoteAddress);
 	}else{
-		console.log('received:', data);
+		console.log('received ip :'+ ws._socket.remoteAddress, data);
 		console.log('received:', JSON.parse(data));
 		liste.push(JSON.parse(data));
 		console.log(liste);
@@ -41,6 +41,4 @@ console.log('received');
 ws.send(JSON.stringify(liste));
 //ws.send('something');
 });
-
-
 
